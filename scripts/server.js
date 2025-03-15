@@ -11,10 +11,20 @@ const pool = mysql.createPool({
 }).promise()
 
 
-async function getNodes() {
+export async function getNotes() {
     const [rows]  = await pool.query("SELECT * FROM notes");
     console.log(rows)
 }
 
-const notes = await getNodes()
-console.log(notes)
+export async function getNote(id) {
+    const [rows] = await pool.query("SELECT * FROM notes WHERE id = ?", [id])
+    return rows[0]
+}
+
+export async function createNote(title, content) {
+    const [result] = await pool.query('INSERT INTO notes (title, contents) VALUES (?, ?)', [title, content])
+    return result.insertId
+}
+
+const result = await createNote('test', 'test')
+console.log(result)
