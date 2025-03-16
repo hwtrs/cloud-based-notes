@@ -26,5 +26,5 @@ export async function createNote(title, content) {
     return result.insertId
 }
 
-const result = await createNote('test', 'test')
-console.log(result)
+//const result = await createNote('test', 'test')
+console.log("here")
