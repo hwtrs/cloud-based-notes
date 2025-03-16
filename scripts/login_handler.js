@@ -9,6 +9,12 @@ app.get("/notes", async (req, res) => {
     res.send(notes)
 })
 
+app.get("notes/:id", async (req, res) =>  {
+    const id = req.params.id
+    const notes = await getNote(id)
+    res.send(notes)
+})
+
 app.use((err, req, res, next) => {
     console.err(err.stack)
     res.status(500).send("Issue with login handler")
