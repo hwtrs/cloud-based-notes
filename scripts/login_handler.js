@@ -9,10 +9,16 @@ app.get("/notes", async (req, res) => {
     res.send(notes)
 })
 
-app.get("notes/:id", async (req, res) =>  {
+app.get("/notes/:id", async (req, res) =>  {
     const id = req.params.id
     const notes = await getNote(id)
     res.send(notes)
+})
+
+app.post("/notes", async (req, res) => {
+    const { title, contents} = req.body
+    const note = await createNote(title, contents)
+    res.send(note)
 })
 
 app.use((err, req, res, next) => {
