@@ -21,11 +21,18 @@ export async function getNote(id) {
     const [rows] = await pool.query("SELECT * FROM notes WHERE id = ?", [id])
     return rows[0]
 }
+ 
+export async function getPassword(name) {
+    const [rows] = await pool.query("SELECT * FROM notes where title = ?", [name])
+    return rows[0].contents
+}
 
 export async function createNote(title, content) {
     const [result] = await pool.query('INSERT INTO notes (title, contents) VALUES (?, ?)', [title, content])
     return result.insertId
 }
 
-//const result = await createNote('test', 'test')
-console.log("here")
+/*
+const result = await getPassword("henry")
+console.log(result)
+*/
