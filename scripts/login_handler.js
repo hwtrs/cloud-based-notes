@@ -43,10 +43,3 @@ app.use((err, req, res, next) => {
 app.listen(3000, '0.0.0.0', () => {
     console.log('Server running on port 3000');
 });
-
-
-/*
-document.getElementById("login").addEventListener("click", function(event) {
-    event.preventDefault();
-});
-*/
