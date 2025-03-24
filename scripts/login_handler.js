@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { getNote, getNotes, createNote, getPassword } from './server.js'
+import { getNote, getNotes, createLogin, getPassword } from './server.js'
 
 const app = express()
 app.use(cors()); 
@@ -29,8 +29,8 @@ app.post("/find_account", async (req, res) => {
 
 
 app.post("/notes", async (req, res) => {
-    const { title, contents} = req.body
-    const note = await createNote(title, contents)
+    const { username, pword} = req.body
+    const note = await createLogin(username, pword)
     res.status(201).send(note)
 })
 

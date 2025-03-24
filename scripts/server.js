@@ -23,12 +23,12 @@ export async function getNote(id) {
 }
  
 export async function getPassword(name) {
-    const [rows] = await pool.query("SELECT * FROM notes where title = ?", [name])
-    return rows[0].contents
+    const [rows] = await pool.query("SELECT * FROM logins where username = ?", [name])
+    return rows[0].pword
 }
 
-export async function createNote(title, content) {
-    const [result] = await pool.query('INSERT INTO notes (title, contents) VALUES (?, ?)', [title, content])
+export async function createLogin(username, pword) {
+    const [result] = await pool.query('INSERT INTO logins (username, pword) VALUES (?, ?)', [username, pword])
     return result.insertId
 }
 

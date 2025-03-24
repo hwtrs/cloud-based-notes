@@ -8,6 +8,13 @@ CREATE TABLE notes (
     created TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
+CREATE TABLE logins (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL,
+    pword TEXT NOT NULL,
+    created TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
 INSERT INTO notes (title, contents)
 VALUES
 ('Note 1', 'Test Test Test'),

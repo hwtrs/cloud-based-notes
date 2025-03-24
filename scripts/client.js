@@ -1,3 +1,5 @@
+session = false;
+
 document.getElementById("create_account_button").addEventListener("click", async function(event) {
     console.log("123")
     event.preventDefault();
@@ -11,11 +13,10 @@ document.getElementById("create_account_button").addEventListener("click", async
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            title: username,
-            contents: password
+            username: username,
+            pword: password
         })
     });
-
 })
 
 document.getElementById("login").addEventListener("click", async function(event) {
