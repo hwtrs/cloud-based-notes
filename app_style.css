@@ -60,4 +60,5 @@ body {
     border-left: 2px solid rgb(from rgb(48, 48, 65) r g b);
     background: rgb(from rgb(48, 48, 65) r g b);
     overflow-y: auto;
+    color: white;
 }

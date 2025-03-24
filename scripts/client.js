@@ -1,5 +1,3 @@
-session = false;
-
 document.getElementById("create_account_button").addEventListener("click", async function(event) {
     console.log("123")
     event.preventDefault();
