@@ -19,16 +19,26 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
+    function saveNotes() {
+        localStorage.setItem("notes", JSON.stringify(notes));
+        console.log("herro")
+    }
+
     function selectNote(index) {
+        const savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
+        console.log(savedNotes)
+
         currentNoteIndex = index;
-        editor.innerHTML = notes[index].contents;
+        editor.innerHTML = savedNotes[index].contents;
     }
 
     editor.addEventListener("input", () => {
-        notes[currentNoteIndex].content = editor.innerHTML;
+        saveNotes();
+        notes[currentNoteIndex].contents = editor.innerHTML;
     });
 
     newNoteBtn.addEventListener("click", () => {
+        saveNotes();
         let newNote = { title: "New Note", contents: "" };
         notes.push(newNote);
         currentNoteIndex = notes.length - 1;
@@ -42,5 +52,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     loadNotes();
     selectNote(0);
-    
+});
+
+const noteInput = document.getElementById("editor");
+
+noteInput.addEventListener("input", () => {
+    localStorage.setItem("currentNote", noteInput.value);
 });
