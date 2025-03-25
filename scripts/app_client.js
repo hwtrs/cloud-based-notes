@@ -3,9 +3,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const notesList = document.getElementById("notesList");
     const newNoteBtn = document.getElementById("newNoteBtn");
 
-
-    const response = await fetch("http://localhost:3000/notes");
-    const notes = await response.json();
+    let notes = JSON.parse(localStorage.getItem("notes")) || [];
+    if (notes.length === 0) {
+        const response = await fetch("http://localhost:3000/notes");
+        notes = await response.json();
+    }
 
     let currentNoteIndex = 0;
 
@@ -21,29 +23,26 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     function saveNotes() {
         localStorage.setItem("notes", JSON.stringify(notes));
-        console.log("herro")
+        console.log("Notes saved!");
     }
 
     function selectNote(index) {
-        const savedNotes = JSON.parse(localStorage.getItem("notes")) || [];
-        console.log(savedNotes)
-
         currentNoteIndex = index;
-        editor.innerHTML = savedNotes[index].contents;
+        editor.innerHTML = notes[index].contents;
     }
 
-    editor.addEventListener("input", () => {
-        saveNotes();
-        notes[currentNoteIndex].contents = editor.innerHTML;
-    });
-
     newNoteBtn.addEventListener("click", () => {
-        saveNotes();
         let newNote = { title: "New Note", contents: "" };
         notes.push(newNote);
         currentNoteIndex = notes.length - 1;
         editor.innerHTML = "";
         loadNotes();
+        saveNotes();
+    });
+
+    editor.addEventListener("input", () => {
+        notes[currentNoteIndex].contents = editor.innerHTML;
+        saveNotes();
     });
 
     if (notes.length === 0) {
@@ -52,10 +51,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     loadNotes();
     selectNote(0);
-});
-
-const noteInput = document.getElementById("editor");
-
-noteInput.addEventListener("input", () => {
-    localStorage.setItem("currentNote", noteInput.value);
 });
