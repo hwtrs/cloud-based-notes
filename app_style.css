@@ -61,4 +61,19 @@ body {
     background: rgb(from rgb(48, 48, 65) r g b);
     overflow-y: auto;
     color: white;
+    flex-direction: column;
+}
+
+.content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+#title {
+    height: 50px;
+    font-size: 24px;
+    color: white;
+    flex-grow: 0;
 }

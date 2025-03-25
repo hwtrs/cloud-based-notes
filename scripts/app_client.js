@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     function selectNote(index) {
         currentNoteIndex = index;
         editor.innerHTML = notes[index].contents;
+        title.innerHTML = notes[index].title;
+        loadNotes();
     }
 
     newNoteBtn.addEventListener("click", () => {
@@ -36,13 +38,23 @@ document.addEventListener("DOMContentLoaded", async () => {
         notes.push(newNote);
         currentNoteIndex = notes.length - 1;
         editor.innerHTML = "";
+        title.innerHTML = newNote.title;
         loadNotes();
         saveNotes();
     });
 
     editor.addEventListener("input", () => {
         notes[currentNoteIndex].contents = editor.innerHTML;
+        notes[currentNoteIndex].title = title.innerHTML;
         saveNotes();
+        loadNotes();
+    });
+
+    title.addEventListener("input", () => {
+        notes[currentNoteIndex].contents = editor.innerHTML;
+        notes[currentNoteIndex].title = title.innerHTML;
+        saveNotes();
+        loadNotes();
     });
 
     if (notes.length === 0) {
