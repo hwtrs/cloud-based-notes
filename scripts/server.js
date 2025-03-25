@@ -31,8 +31,3 @@ export async function createLogin(username, pword) {
     const [result] = await pool.query('INSERT INTO logins (username, pword) VALUES (?, ?)', [username, pword])
     return result.insertId
 }
-
-/*
-const result = await getPassword("henry")
-console.log(result)
-*/
