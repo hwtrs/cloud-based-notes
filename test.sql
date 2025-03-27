@@ -19,3 +19,7 @@ INSERT INTO notes (title, contents)
 VALUES
 ('Note 1', 'Test Test Test'),
 ('Note 2', 'Test Test')
+
+INSERT INTO logins (username, password)
+VALUES
+('hello', '123');

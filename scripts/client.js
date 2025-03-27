@@ -5,7 +5,7 @@ document.getElementById("create_account_button").addEventListener("click", async
     const username = document.querySelector("input[type='text']").value;
     const password = document.querySelector("input[type='password']").value;
 
-    const response = await fetch("https://cloud-based-notes-lime.vercel.app:37199/notes", {
+    const response = await fetch("https://cloud-based-notes-lime.vercel.app/notes", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -24,7 +24,7 @@ document.getElementById("login").addEventListener("click", async function(event)
     const username = document.querySelector("input[type='text']").value;
     const password = document.querySelector("input[type='password']").value;
 
-    const response = await fetch("https://cloud-based-notes-lime.vercel.app:37199/find_account", {
+    const response = await fetch("https://cloud-based-notes-lime.vercel.app/find_account", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

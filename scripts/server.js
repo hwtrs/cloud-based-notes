@@ -24,10 +24,10 @@ export async function getNote(id) {
  
 export async function getPassword(name) {
     const [rows] = await pool.query("SELECT * FROM logins where username = ?", [name])
-    return rows[0].pword
+    return rows[0].password
 }
 
 export async function createLogin(username, pword) {
-    const [result] = await pool.query('INSERT INTO logins (username, pword) VALUES (?, ?)', [username, pword])
+    const [result] = await pool.query('INSERT INTO logins (username, password) VALUES (?, ?)', [username, pword])
     return result.insertId
 }

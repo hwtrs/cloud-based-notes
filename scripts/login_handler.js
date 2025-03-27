@@ -6,11 +6,13 @@ const app = express()
 app.use(cors()); 
 app.use(express.json())
 
+/*
 app.get("/notes", async (req, res) => {
     console.log("this")
     const notes = await getNotes()
     res.send(notes)
 })
+    */
 
 app.get("/notes/:id", async (req, res) =>  {
     const id = req.params.id
@@ -28,10 +30,16 @@ app.post("/find_account", async (req, res) => {
 })
 
 app.post("/notes", async (req, res) => {
-    const { username, pword} = req.body
-    const note = await createLogin(username, pword)
-    res.status(201).send(note)
-})
+    try {
+        const { username, pword } = req.body;
+        const note = await createLogin(username, pword);
+        res.status(201).send({ message: "User created", id: note });
+    } catch (err) {
+        console.error("Server error:", err);
+        res.status(500).send({ error: "Database error" });
+    }
+});
+
 
 
 app.use((err, req, res, next) => {
