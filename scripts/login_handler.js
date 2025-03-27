@@ -27,7 +27,6 @@ app.post("/find_account", async (req, res) => {
     }
 })
 
-
 app.post("/notes", async (req, res) => {
     const { username, pword} = req.body
     const note = await createLogin(username, pword)
