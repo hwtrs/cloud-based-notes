@@ -47,6 +47,6 @@ app.use((err, req, res, next) => {
     res.status(500).send("Issue with login handler")
 })
 
-app.listen(37199, () => {
-    console.log('Server running on port 37199');
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
 });
