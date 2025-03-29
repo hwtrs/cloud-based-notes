@@ -39,6 +39,5 @@ document.getElementById("login").addEventListener("click", async function(event)
     if (responseBody == "1") {
         console.log("Valid")
         window.location.href = "app.html";
-
     }
 })
