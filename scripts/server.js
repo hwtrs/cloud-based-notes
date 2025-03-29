@@ -11,7 +11,7 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DATABASE,
     port: 37199,
     ssl: {
-        rejectUnauthorized: true
+        rejectUnauthorized: false
     }
 }).promise()
 
