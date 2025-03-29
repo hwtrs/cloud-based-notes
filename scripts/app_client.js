@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let notes = JSON.parse(localStorage.getItem("notes")) || [];
     if (notes.length === 0) {
-        const response = await fetch("https://cloud-based-notes-lime.vercel.app/notes");
+        const response = await fetch("https://cloud-based-notes-lime.vercel.app/api/notes");
         notes = await response.json();
     }
 

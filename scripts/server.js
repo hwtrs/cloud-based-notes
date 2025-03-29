@@ -1,5 +1,6 @@
 import mysql from 'mysql2'
 import path from 'path';
+import dotenv from 'dotenv'
 
 dotenv.config({ path: path.resolve('scripts', '.env') });
 
