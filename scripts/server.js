@@ -16,9 +16,8 @@ const pool = mysql.createPool({
 }).promise()
 
 
-export async function getNotes() {
-    const [rows]  = await pool.query("SELECT * FROM notes");
-    console.log(rows)
+export async function getNotes(id) {
+    const [rows]  = await pool.query("SELECT * FROM notes WHERE id = ?", [id]);
     return rows
 }
 
@@ -32,7 +31,17 @@ export async function getPassword(name) {
     return rows[0].password
 }
 
+export async function getUserID(name) {
+    const [rows] = await pool.query("SELECT * FROM logins where username = ?", [name])
+    return rows[0].id
+}
+
 export async function createLogin(username, pword) {
     const [result] = await pool.query('INSERT INTO logins (username, password) VALUES (?, ?)', [username, pword])
+    return result.insertId
+}
+
+export async function createNote(user_id, title, contents) {
+    const [result] = await pool.query('INSERT INTO notes (user_id, title, contents) VALUES (?, ?, ?)', [user_id, title, contents])
     return result.insertId
 }

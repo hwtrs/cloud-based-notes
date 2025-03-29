@@ -3,6 +3,7 @@ USE notes_app;
 
 CREATE TABLE notes (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
     contents TEXT NOT NULL,
     created TIMESTAMP NOT NULL DEFAULT NOW()
@@ -11,14 +12,14 @@ CREATE TABLE notes (
 CREATE TABLE logins (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255) NOT NULL,
-    pword TEXT NOT NULL,
+    password TEXT NOT NULL,
     created TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
-INSERT INTO notes (title, contents)
+INSERT INTO notes (user_id, title, contents)
 VALUES
-('Note 1', 'Test Test Test'),
-('Note 2', 'Test Test')
+(1, 'Note 1', 'Note 1 contents'),
+(2, 'Note 2', 'Note 2 contents')
 
 INSERT INTO logins (username, password)
 VALUES

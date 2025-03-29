@@ -15,6 +15,7 @@ document.getElementById("create_account_button").addEventListener("click", async
             pword: password
         })
     });
+
 })
 
 document.getElementById("login").addEventListener("click", async function(event) {
@@ -34,10 +35,12 @@ document.getElementById("login").addEventListener("click", async function(event)
             password: password
         })
     });
+
+    const data = await response.json();
     
-    const responseBody = await response.text();
-    if (responseBody == "1") {
+    if (response.ok) {
         console.log("Valid")
+        localStorage.setItem("user_id", data.user_id);
         window.location.href = "app.html";
     }
 })

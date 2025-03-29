@@ -2,12 +2,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     const editor = document.getElementById("editor");
     const notesList = document.getElementById("notesList");
     const newNoteBtn = document.getElementById("newNoteBtn");
+    const user_id = localStorage.getItem("user_id")
+    console.log(user_id)
 
-    let notes = JSON.parse(localStorage.getItem("notes")) || [];
-    if (notes.length === 0) {
-        const response = await fetch("https://cloud-based-notes-lime.vercel.app/api/notes");
-        notes = await response.json();
-    }
+    // let notes = JSON.parse(localStorage.getItem("notes")) || [];
+    let notes;
+    const response = await fetch("https://cloud-based-notes-lime.vercel.app/api/notes", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            user_id: user_id
+        })
+    });
+    notes = await response.json();
+    console.log(notes)
 
     let currentNoteIndex = 0;
 
