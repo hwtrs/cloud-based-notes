@@ -3,7 +3,13 @@ import cors from 'cors'
 import { getNote, getNotes, createLogin, getPassword } from './server.js'
 
 const app = express()
-app.use(cors()); 
+app.use(
+    cors({
+        origin: "*",
+        methods: ["GET", "POST", "PUT", "DELETE"],
+        allowedHeaders: ["Content-Type", "Authorization"],
+    })
+);
 app.use(express.json())
 
 /*
