@@ -12,13 +12,13 @@ app.use(
 );
 app.use(express.json())
 
-app.get("/notes/:id", async (req, res) =>  {
+app.get("/api/notes/:id", async (req, res) =>  {
     const id = req.params.id
     const notes = await getNote(id)
     res.send(notes)
 })
 
-app.post("/find_account", async (req, res) => {
+app.post("/api/find_account", async (req, res) => {
     const { username, password } = req.body;
     const result = await getPassword(username)
     console.log("result: " + result)
@@ -27,7 +27,7 @@ app.post("/find_account", async (req, res) => {
     }
 })
 
-app.post("/notes", async (req, res) => {
+app.post("/api/notes", async (req, res) => {
     try {
         const { username, pword } = req.body;
         const note = await createLogin(username, pword);

@@ -1,15 +1,5 @@
-import app from "../server.js";
-import { createServer } from "@vercel/node";
+import app from "../scripts/login_handler";
 
-import express from 'express';
-import cors from 'cors';
-
-const app = express();
-app.use(cors());
-app.use(express.json());
-
-app.get('/api/test', (req, res) => {
-  res.json({ message: "Server is working!" });
-});
-
-export default app;
+export default (req, res) => {
+    app(req, res);
+};
