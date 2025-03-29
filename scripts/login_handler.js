@@ -12,14 +12,6 @@ app.use(
 );
 app.use(express.json())
 
-/*
-app.get("/notes", async (req, res) => {
-    console.log("this")
-    const notes = await getNotes()
-    res.send(notes)
-})
-    */
-
 app.get("/notes/:id", async (req, res) =>  {
     const id = req.params.id
     const notes = await getNote(id)
@@ -46,16 +38,13 @@ app.post("/notes", async (req, res) => {
     }
 });
 
-
+app.get("/api/test", (req, res) => {
+    res.json({ message: "API is working!" });
+});
 
 app.use((err, req, res, next) => {
     console.error(err.stack)
     res.status(500).send("Issue with login handler")
 })
 
-/*
-app.listen(3000, () => {
-    console.log('Server running on port 3000');
-});
-*/
 export default app;
