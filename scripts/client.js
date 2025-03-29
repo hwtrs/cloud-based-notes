@@ -5,7 +5,7 @@ document.getElementById("create_account_button").addEventListener("click", async
     const username = document.querySelector("input[type='text']").value;
     const password = document.querySelector("input[type='password']").value;
 
-    const response = await fetch("https://cloud-based-notes-lime.vercel.app/api/notes", {
+    const response = await fetch("https://cloud-based-notes-lime.vercel.app/api/create_login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

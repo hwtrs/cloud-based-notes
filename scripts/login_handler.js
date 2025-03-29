@@ -27,7 +27,7 @@ app.post("/api/find_account", async (req, res) => {
     }
 })
 
-app.post("/api/notes", async (req, res) => {
+app.post("/api/create_login", async (req, res) => {
     try {
         const { username, pword } = req.body;
         const note = await createLogin(username, pword);
@@ -37,6 +37,11 @@ app.post("/api/notes", async (req, res) => {
         res.status(500).send({ error: "Database error" });
     }
 });
+
+app.get("/api/notes", async (req, res) => {
+    const result = await getNotes();
+    res.send(result)
+})
 
 app.get("/api/test", (req, res) => {
     console.log("test");
