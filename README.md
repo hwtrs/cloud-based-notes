@@ -45,7 +45,7 @@ that you use for other services, don't store sensitive information within the ap
    ```
 4. **Start the server locally:**
    ```bash
-   node server.js
+   node scripts/login_handler.js
    ```
 
 ## **API Endpoints**
