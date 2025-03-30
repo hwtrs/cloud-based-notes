@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             body: JSON.stringify({
                 user_id: user_id,
                 title: "New Note",
-                contents: ""
+                contents: "New Note Text"
             })
         });
         let data = await response.json();
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     if (notes.length === 0) {
-        notes.push({ title: "New Note", contents: "" });
+        notes.push({ title: "New Note", contents: "New Note Text" });
     }
 
     loadNotes();
