@@ -1,6 +1,8 @@
 # **Cloud-Based Notes**
 
-A simple cloud-based notes application that allows users to create, edit, and manage notes securely.
+A simple cloud-based notes application that allows users to create, edit, and manage notes.
+Notes are absolutely not-secure, obviously don't create an account with login information
+that you use for other services, don't store sensitive information within the app.
 
 ## **Features**
 
@@ -50,8 +52,8 @@ A simple cloud-based notes application that allows users to create, edit, and ma
 
 ### **Authentication**
 
-- `` - Login
-- `` - Create account
+  - Login
+  - Create account
 
 ## **Deployment**
 
