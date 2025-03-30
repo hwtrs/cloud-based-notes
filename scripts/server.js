@@ -17,7 +17,7 @@ const pool = mysql.createPool({
 
 
 export async function getNotes(id) {
-    const [rows]  = await pool.query("SELECT * FROM notes WHERE id = ?", [id]);
+    const [rows]  = await pool.query("SELECT * FROM notes WHERE user_id = ?", [id]);
     return rows
 }
 
@@ -44,4 +44,9 @@ export async function createLogin(username, pword) {
 export async function createNote(user_id, title, contents) {
     const [result] = await pool.query('INSERT INTO notes (user_id, title, contents) VALUES (?, ?, ?)', [user_id, title, contents])
     return result.insertId
+}
+
+export async function saveNote(id, user_id, title, contents) {
+    const [result] = await pool.query('UPDATE notes SET title = ?, contents = ? WHERE id = ?', [title, contents, id])
+    return result.affectedRows
 }

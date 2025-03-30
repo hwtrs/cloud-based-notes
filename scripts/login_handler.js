@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import { getNote, getNotes, createLogin, getPassword, getUserID } from './server.js'
+import { getNote, getNotes, createLogin, getPassword, getUserID, saveNote, createNote } from './server.js'
 
 const app = express()
 app.use(
@@ -42,13 +42,31 @@ app.post("/api/create_login", async (req, res) => {
 app.post("/api/create_note", async (req, res) => {
     try {
         const { user_id, title, contents } = req.body;
-        const note = await createNote(user_id, title, contents);
-        res.status(201).send({ message: "Note created", id: note });
+        let response = await createNote(user_id, title, contents);
+        console.log("NEW ID: " + response)
+        res.status(201).send({ message: "Note created", id: response });
     } catch (err) {
         console.error("Server error:", err);
         res.status(500).send({ error: "Database error" });
     }
 });
+
+app.post("/api/save_note", async (req, res) => {
+    try {
+        const { id, user_id, title, contents } = req.body;
+        const result = await saveNote(id, user_id, title, contents);
+
+        if (result > 0) {
+            res.json({ message: "Note saved successfully!" });
+        } else {
+            res.status(400).json({ error: "No note updated. Check ID and user_id." });
+        }
+    } catch (error) {
+        console.error("Error saving note:", error);
+        res.status(500).json({ error: "Database error" });
+    }
+});
+
 
 app.post("/api/notes", async (req, res) => {
     const { user_id } = req.body
