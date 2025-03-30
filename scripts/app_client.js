@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
         let data = await response.json();
         let newID = data.id;
-        let newNote = { title: "New Note", contents: "", id: newID };
+        let newNote = { title: "New Note", contents: "New Note Text", id: newID };
         notes.push(newNote);
         currentNoteIndex = notes.length - 1;
         editor.innerHTML = "";
